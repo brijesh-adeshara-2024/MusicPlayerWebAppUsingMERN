@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const JwtStrategy = require("passport-jwt").Strategy,
   ExtractJwt = require("passport-jwt").ExtractJwt;
 const passport = require("passport");
-const app = express();
 const User = require("./models/User");
 require("dotenv").config();
+const app = express();
 const port = 8000;
 
 mongoose
