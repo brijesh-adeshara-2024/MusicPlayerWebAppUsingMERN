@@ -3,20 +3,19 @@ const mongoose = require("mongoose");
 const JwtStrategy = require("passport-jwt").Strategy,
   ExtractJwt = require("passport-jwt").ExtractJwt;
 const passport = require("passport");
+const authRoutes = require("./routes/auth");
 const User = require("./models/User");
 require("dotenv").config();
 const app = express();
 const port = 8000;
+app.use(express.json());
 
 mongoose
   .connect(
     "mongodb+srv://Brijesh:" +
       encodeURIComponent(process.env.PASSWORD) +
       "@cluster0.td0p9e7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
+    {}
   )
   .then((x) => {
     console.log("connected to mongodb");
@@ -48,6 +47,8 @@ passport.use(
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
+
+app.use("/auth", authRoutes);
 
 app.listen(port, () => {
   console.log("app is running on port " + port);
