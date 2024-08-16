@@ -60,7 +60,9 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const { songName } = req.body;
-    const songs = await Song.find({ name: songName });
+    const songs = await Song.find({
+      name: { $regex: songName, $options: "i" },
+    });
     return res.json({ data: songs });
   }
 );
