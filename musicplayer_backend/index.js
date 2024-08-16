@@ -4,6 +4,7 @@ const JwtStrategy = require("passport-jwt").Strategy,
   ExtractJwt = require("passport-jwt").ExtractJwt;
 const passport = require("passport");
 const authRoutes = require("./routes/auth");
+const songRoutes = require("./routes/song");
 const User = require("./models/User");
 require("dotenv").config();
 const app = express();
@@ -49,6 +50,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/song", songRoutes);
 
 app.listen(port, () => {
   console.log("app is running on port " + port);

@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express();
+const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const { getToken } = require("../utils/helpers");
